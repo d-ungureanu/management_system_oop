@@ -1,12 +1,13 @@
 class Employee:
     # All Employee objects will need:
-    # first name    - string
-    # last name     - string
-    # day           - int
-    # month         - int
-    # year          - int
-    # position,
-    # graduation status
+    # first name        - string
+    # last name         - string
+    # day               - int
+    # month             - int
+    # year              - int
+    # position          - int
+    # graduation status - bool
+    # Employee object constructor
     def __init__(self, fn, ln, d, m, y, pos, grad, ids):
         self.first_name = fn
         self.last_name = ln
@@ -17,9 +18,11 @@ class Employee:
         self.graduated = grad
         self.ids = ids
 
+    # Print output format
     def __str__(self):
         return f"'firstname': '{self.first_name}', 'lastname': '{self.last_name}', 'day': {self.birth_day}, 'month': {self.birth_month}, 'year': {self.birth_year}, 'position': '{self.position}', 'graduated': {self.graduated}, 'id': {self.ids}"
 
+    # Setters and Getters for all Employee's properties
     def set_first_name(self, firstname):
         self.first_name = firstname
 
