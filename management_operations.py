@@ -199,7 +199,7 @@ def print_employee_db_size():
     print("\n+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
     print(db_size_msg)
     print("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
-    logger.update_log_file(db_size_msg)
+    logger.update_log_file("Database size enquiry made.")
 
 
 def print_id_details():
