@@ -1,7 +1,7 @@
 import management_operations
-import logger
 
 
+# Select options function
 def select_option():
     while True:
         allowed_options = ["add", "rem", "mod", "id", "list", "size", "exit"]
