@@ -3,6 +3,7 @@ import management_operations
 
 # Select options function
 def select_option():
+    management_operations.load_db_from_file()
     while True:
         allowed_options = ["add", "rem", "mod", "id", "list", "size", "exit"]
         selection = input("""
