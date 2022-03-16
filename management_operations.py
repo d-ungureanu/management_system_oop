@@ -1,9 +1,10 @@
 from employee_details_oop import Employee
 import logger
+import json
 
 # File that handles employees details
 employees_db = {}
-employees_counter = 0
+employees_counter = len(employees_db)
 logger.create_log_file()
 
 
@@ -208,3 +209,17 @@ def print_id_details():
     if display_id.isdigit() and int(display_id) in employees_db.keys():
         print(employees_db[int(display_id)])
         logger.update_log_file(f"Details for employee with ID: {display_id} have been displayed.")
+
+
+def save_db_as_json():
+    global employees_db
+    temp_employees_db = {}
+    for employee_id in employees_db:
+        employee_object = employees_db[employee_id]
+        employee_dict = employee_object.__dict__
+        temp_employees_db[employee_id] = employee_dict
+    with open("employees_db.json", "w") as db_file:
+        json.dump(temp_employees_db, db_file)
+    logger.update_log_file("Saving data to employees.json file.")
+
+    print("Saving data to employees_db.json")

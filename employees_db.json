@@ -1,0 +1,22 @@
+{
+  "1": {
+    "first_name": "Daniel",
+    "last_name": "Ungureanu",
+    "birth_day": 21,
+    "birth_month": 11,
+    "birth_year": 1987,
+    "position": "DevOps",
+    "graduated": true,
+    "ids": 1
+  },
+  "2": {
+    "first_name": "Mihai",
+    "last_name": "Petre",
+    "birth_day": 21,
+    "birth_month": 3,
+    "birth_year": 1999,
+    "position": "Tester",
+    "graduated": false,
+    "ids": 2
+  }
+}

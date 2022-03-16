@@ -29,6 +29,8 @@ Please choose your desired option:
             elif selection == "id":
                 management_operations.print_id_details()
             elif selection == "exit":
+                management_operations.save_db_as_json()
+
                 break
 
         else:
