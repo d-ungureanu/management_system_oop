@@ -1,13 +1,17 @@
+# File that handles employees details
 from employee_details_oop import Employee
 import logger
 import json
 
-# File that handles employees details
+# dictionary that holds Employee objects
 employees_db = {}
-employees_counter = len(employees_db)
+# counter to help with employee's ID
+employees_counter = 0
+# Create log file
 logger.create_log_file()
 
 
+# Function to read first name
 def read_firstname():
     while True:
         firstname = input("Please enter the first name: ").strip().capitalize()
@@ -18,6 +22,7 @@ def read_firstname():
     return firstname
 
 
+# Function to read last name
 def read_lastname():
     while True:
         lastname = input("Please enter the last name: ").strip().capitalize()
@@ -28,6 +33,7 @@ def read_lastname():
     return lastname
 
 
+# Function to read year of birth
 def read_birth_yeah():
     while True:
         birth_year_str = input("Please enter the year of birth (4 digits format): ")
@@ -42,6 +48,7 @@ def read_birth_yeah():
     return birth_year
 
 
+# Function to read month of birth
 def read_birth_month():
     while True:
         birth_month_str = input("Please enter the month of birth (1 to 12): ")
@@ -56,6 +63,7 @@ def read_birth_month():
     return birth_month
 
 
+# Function to read day of birth
 def read_birth_day():
     while True:
         birth_day_str = input("Please enter the day of birth: ")
@@ -70,6 +78,7 @@ def read_birth_day():
     return birth_day
 
 
+# Function to read employee's position
 def read_position():
     while True:
         position = input("Please enter the employment position: ").strip()
@@ -80,6 +89,7 @@ def read_position():
     return position
 
 
+# Function to read graduation status
 def read_graduation():
     while True:
         graduation_str = input("""Has the employee graduated from university?
@@ -95,6 +105,7 @@ def read_graduation():
     return graduation
 
 
+# Function that calls all read functions
 def read_employee_details():
     global employees_counter
     employees_counter += 1
@@ -109,6 +120,7 @@ def read_employee_details():
     return employee
 
 
+# Function used to add employee to DB
 def add_employee():
     global employees_db
     global employees_counter
@@ -120,6 +132,7 @@ def add_employee():
     print(" __________________________________________________________________")
 
 
+# Function used to remove DB.
 def remove_employee():
     global employees_db
     rem_id_str = input("Please enter the ID you want to remove from database: ").strip()
@@ -133,6 +146,7 @@ def remove_employee():
         logger.update_log_file(delete_msg)
 
 
+# Function used to print content of DB.
 def print_employee_db():
     global employees_db
     print("\n+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
@@ -142,6 +156,7 @@ def print_employee_db():
     logger.update_log_file("Employees DB has been listed.")
 
 
+# Function used to update employee's details.
 def update_employee():
     global employees_db
     mod_id_str = input("Please enter the ID you want to update: ").strip()
@@ -194,6 +209,7 @@ def update_employee():
         logger.update_log_file(update_msg)
 
 
+# Function used to display DB's size
 def print_employee_db_size():
     global employees_db
     db_size_msg = f"The database holds {len(employees_db)} entries."
@@ -203,6 +219,7 @@ def print_employee_db_size():
     logger.update_log_file("Database size enquiry made.")
 
 
+# Function used to display employee's details by ID.
 def print_id_details():
     global employees_db
     display_id = input("Please enter the ID you want to display: ")
@@ -211,6 +228,7 @@ def print_id_details():
         logger.update_log_file(f"Details for employee with ID: {display_id} have been displayed.")
 
 
+# Function used to save the employee's data to JSON file.
 def save_db_as_json():
     global employees_db
     temp_employees_db = {}
@@ -223,3 +241,32 @@ def save_db_as_json():
     logger.update_log_file("Saving data to employees.json file.")
 
     print("Saving data to employees_db.json")
+
+
+# Function used to load DB from JSON file
+def load_db_from_file():
+    global employees_db
+    global employees_counter
+    temp_db = {}
+    try:
+        with open("employees_db.json", "r") as db_file:
+            temp_db = json.load(db_file)
+    except:
+        print("File not found in specified path.")
+
+    for key_id in temp_db:
+        employee_fn = temp_db[key_id]["first_name"]
+        employee_ln = temp_db[key_id]["last_name"]
+        employee_bd = temp_db[key_id]["birth_day"]
+        employee_bm = temp_db[key_id]["birth_month"]
+        employee_by = temp_db[key_id]["birth_year"]
+        employee_pos = temp_db[key_id]["position"]
+        employee_grad = temp_db[key_id]["graduated"]
+        employee_id = temp_db[key_id]["ids"]
+
+        temp_employee = Employee(employee_fn, employee_ln, employee_bd, employee_bm, employee_by, employee_pos,
+                                 employee_grad, employee_id)
+        employees_db[employee_id] = temp_employee
+        logger.update_log_file("DB loaded from employees_db.JSON")
+
+    employees_counter = len(employees_db)
