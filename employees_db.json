@@ -1,11 +1,11 @@
 {
   "1": {
-    "first_name": "Daniel",
-    "last_name": "Ungureanu",
-    "birth_day": 21,
-    "birth_month": 11,
+    "first_name": "Maria",
+    "last_name": "Popa",
+    "birth_day": 31,
+    "birth_month": 12,
     "birth_year": 1987,
-    "position": "DevOps",
+    "position": "dev",
     "graduated": true,
     "ids": 1
   },
@@ -15,8 +15,18 @@
     "birth_day": 21,
     "birth_month": 3,
     "birth_year": 1999,
-    "position": "Tester",
+    "position": "tester",
     "graduated": false,
     "ids": 2
+  },
+  "3": {
+    "first_name": "Daniel",
+    "last_name": "Ungureanu",
+    "birth_day": 21,
+    "birth_month": 4,
+    "birth_year": 1999,
+    "position": "devops",
+    "graduated": true,
+    "ids": 3
   }
 }

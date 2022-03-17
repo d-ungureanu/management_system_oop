@@ -234,7 +234,8 @@ def save_db_as_json():
     temp_employees_db = {}
     for employee_id in employees_db:
         employee_object = employees_db[employee_id]
-        employee_dict = employee_object.__dict__
+        # employee_dict = employee_object.__dict__
+        employee_dict = vars(employee_object)
         temp_employees_db[employee_id] = employee_dict
     with open("employees_db.json", "w") as db_file:
         json.dump(temp_employees_db, db_file)
