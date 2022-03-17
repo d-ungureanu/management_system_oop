@@ -159,6 +159,8 @@ def print_employee_db():
 # Function used to update employee's details.
 def update_employee():
     global employees_db
+    new_data = ""
+    mod_str = ""
     mod_id_str = input("Please enter the ID you want to update: ").strip()
     if mod_id_str.isdigit() and int(mod_id_str) in employees_db:
         print("ID found in database, please select field you want to update:")
@@ -232,6 +234,8 @@ def print_id_details():
 def save_db_as_json():
     global employees_db
     temp_employees_db = {}
+
+    # Convert Employee object to dictionary
     for employee_id in employees_db:
         employee_object = employees_db[employee_id]
         # employee_dict = employee_object.__dict__
@@ -252,9 +256,10 @@ def load_db_from_file():
     try:
         with open("employees_db.json", "r") as db_file:
             temp_db = json.load(db_file)
-    except:
-        print("File not found in specified path.")
+    except FileNotFoundError as file_not_found_error:
+        print(file_not_found_error)
 
+    # Convert dictionary data to Employee object
     for key_id in temp_db:
         employee_fn = temp_db[key_id]["first_name"]
         employee_ln = temp_db[key_id]["last_name"]
@@ -270,4 +275,5 @@ def load_db_from_file():
         employees_db[employee_id] = temp_employee
         logger.update_log_file("DB loaded from employees_db.JSON")
 
+    # Counter set at database size, to avoid ID overlapping
     employees_counter = len(employees_db)
